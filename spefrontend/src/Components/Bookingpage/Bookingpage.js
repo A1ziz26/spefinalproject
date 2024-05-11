@@ -4,6 +4,7 @@ import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../Navbar/navbar";
 
 
 import './Pbook.css';
@@ -258,12 +259,14 @@ useEffect(()=> {
 
   return (
     <>
+      <Navbar/>
+      <div className="book-page">
       <div className="book-content">
-            <p className='head' style={{fontSize:'22px', textAlign:'center'}}><b>Book Appointment</b></p>
+      <p className='head' style={{fontSize:'22px', textAlign:'center', 'marginBottom':'20px'}}><b>Grab a Table!</b></p>
             <form className='pform' onSubmit={handleSubmit}>
             {step >= 1 && (
                     <div className="pform-group">
-                        <label htmlFor="selectDate" className='label2'>Select a Date</label>
+                        <label htmlFor="selectDate" className='label2'>Pick a Date</label>
                         <div className="date-container date-list">
                             {dateOptions.map(({ date, day }) => (
                                 <div className={`date ${selectedDate === date ? 'selected' : ''}`} key={date} onClick={() => handleDateChange(date)}>
@@ -275,34 +278,7 @@ useEffect(()=> {
                 )}
                 {step >= 2 && (
                     <div className="pform-group">
-                        <label htmlFor="cause" className='label1'>Purpose/Reason</label>
-                        <input 
-                            type="text" 
-                            id="cause" 
-                            name="cause" 
-                            placeholder="Reason for appointment" 
-                            value={reasonVal} 
-                            onChange={handleReasonChange} 
-                            required 
-                        />
-                    </div>
-                )}
-                {/* {step >= 2 && (
-                    <div className="pform-group">
-                        <label htmlFor="selectDoctor" className='label2'>Select a Doctor</label>
-                        <div className="doctors-list">
-                            {doctors.map(doctor => (
-                                <div className={`doctor ${selectedDoctor === doctor.id ? 'selected' : ''}`} key={doctor.id} onClick={() => handleDoctorChange(doctor.id)}>
-                                    <p><b>Dr. {doctor.name}</b></p>
-                                    <p><b>Rating:</b> <DisplayRating rating={doctor.totalRating} /></p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )} */}
-                {step >= 2 && (
-                    <div className="pform-group">
-                        <label htmlFor="selectTimeSlot" className='label2'>Select a Time Slot</label>
+                        <label htmlFor="selectTimeSlot" className='label2'>Pick a Time Slot</label>
                         <div className="time-slots-list">
                             {timeSlots.map(slot => (
                                 <div className={`time-slot ${selectedTimeSlot === slot ? 'slcted' : ''}`} key={slot} onClick={() => handleTimeSlotChange(slot)}>
@@ -313,21 +289,33 @@ useEffect(()=> {
                         </div>
                     </div>
                 )}
+                
+                {step >= 2 && (
+                    <div className="pform-group">
+                        <label htmlFor="cause" className='label1'>Occasion</label>
+                        <input 
+                            type="text" 
+                            id="cause" 
+                            name="cause" 
+                            placeholder="Mention if any special occasion" 
+                            value={reasonVal} 
+                            onChange={handleReasonChange}  
+                        />
+                    </div>
+                )}
                 {step >= 3 && (
                     <div className="pform-group">
-                        <label htmlFor="selectDoctor" className='label2'>Select a Doctor</label>
+                        <label htmlFor="selectDoctor" className='label2'>Select Table Size</label>
                         <div className="doctors-list">
-                            
-                            
-                            <div className={`${selectedTable === 1 ? 'selected' : ''}`} key={1} onClick={() => handleDoctorChange(1)}>
+                            <div className={`table ${selectedTable === 1 ? 'selected' : ''}`} key={1} onClick={() => handleDoctorChange(1)}>
                                     <p><b>Table 1</b></p>
                                     <p><b>Count:</b> {table1}</p>
                                 </div>
-                                <div className={`${selectedTable === 2 ? 'selected' : ''}`} key={2} onClick={() => handleDoctorChange(2)}>
+                                <div className={`table ${selectedTable === 2 ? 'selected' : ''}`} key={2} onClick={() => handleDoctorChange(2)}>
                                     <p><b>Table 2</b></p>
                                     <p><b>Count:</b> {table2}</p>
                                 </div>
-                                <div className={`${selectedTable === 3 ? 'selected' : ''}`} key={3} onClick={() => handleDoctorChange(3)}>
+                                <div className={`table ${selectedTable === 3 ? 'selected' : ''}`} key={3} onClick={() => handleDoctorChange(3)}>
                                     <p><b>Table 3</b></p>
                                     <p><b>Count:</b> {table3}</p>
                                 </div>
@@ -336,12 +324,14 @@ useEffect(()=> {
                 )} 
                 {step === 4 && (
                     <div className="pform-group">
-                        <button className='book-btn' type="submit">Book Appointment<GoPlusCircle /></button>
+                        <button className='book-btn' type="submit">Book Table<GoPlusCircle /></button>
                     </div>
                 )}
             </form>
             <ToastContainer />
         </div>
+
+      </div>
     </>
   );
 }

@@ -27,4 +27,6 @@ public class Restaurant {
     private int tableCount1;
     private int tableCount2;
     private int tableCount3;
+    private String restImage;
+    private Float rating;
 }

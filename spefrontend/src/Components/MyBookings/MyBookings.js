@@ -1,8 +1,9 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-
+import Navbar from "../Navbar/navbar";
 import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 
 const Patientscreen = () => {
@@ -32,6 +33,10 @@ const Patientscreen = () => {
             
           );
           console.log(response);
+          toast.success("Booking Cancelled!");
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000); 
         } catch (error) {
           if (error.response) {
             // The request was made and the server responded with a status code
@@ -50,6 +55,7 @@ const Patientscreen = () => {
 
   return (
     <>
+      <Navbar/>
       <div className="calldoc">
         <div className="today-apt">
           <p
@@ -87,6 +93,7 @@ const Patientscreen = () => {
             </div>
             ))}
         </div>
+        <ToastContainer />
       </div>
     </>
   );

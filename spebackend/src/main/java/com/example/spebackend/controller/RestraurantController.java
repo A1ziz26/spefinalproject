@@ -7,10 +7,12 @@ import com.example.spebackend.repository.RestraurantRepository;
 import com.example.spebackend.service.BookingService;
 import com.example.spebackend.service.RestraurantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.Resource;
+import org.springframework.http.*;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URLConnection;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.AbstractMap;
@@ -75,4 +77,34 @@ public class RestraurantController {
             }
 
     }
+
+    @GetMapping("/download/{restImage:.+}")
+    public ResponseEntity<byte[]> downloadFile(@PathVariable String restImage) {
+        try {
+            // Load file as Resource
+            Resource resource = restaurantService.loadFileAsResource(restImage);
+
+            // Determine content type
+            String contentType = URLConnection.guessContentTypeFromName(resource.getFilename());
+
+            // If content type could not be determined, set it to "application/octet-stream"
+            if(contentType == null) {
+                contentType = "application/octet-stream";
+            }
+
+            // Prepare header
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.parseMediaType(contentType));
+            headers.setContentDisposition(ContentDisposition.builder("inline").filename(resource.getFilename()).build());
+
+            // Convert file to byte array
+            byte[] fileAsByteArray = StreamUtils.copyToByteArray(resource.getInputStream());
+
+            return new ResponseEntity<>(fileAsByteArray, headers, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

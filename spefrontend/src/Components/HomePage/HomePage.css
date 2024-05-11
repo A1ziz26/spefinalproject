@@ -1,10 +1,10 @@
 /* Define some color variables */
 :root {
-    --primary-color: #007bff; /* Blue */
+    --primary-color: #000000; /* Blue */
     --secondary-color: #28a745; /* Green */
     --accent-color: #ffc107; /* Yellow */
-    --text-color: #333; /* Dark grey */
-    --bg-color: #f8f9fa; /* Light grey background */
+    --text-color: #000000; /* Dark grey */
+    --bg-color: #ffffff; /* Light grey background */
 }
 
 /* Apply styles to the entire page */
@@ -34,18 +34,26 @@ h1 {
 
 /* Apply styles to each hotel card */
 .hotel-card {
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: #fff; /* White background */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    border: none;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: #fff; 
+    transition: box-shadow 0.3s ease;
+}
+
+.hotel-card:hover{
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Apply styles to the image */
 .hotel-card img {
-    width: 100%;
-    border-radius: 5px;
+    width: 100%; /* Adjust the width to your desired size */
+    height: 260px; /* Adjust the height to your desired size */
+    object-fit: cover; /* This property ensures that the image covers the specified dimensions */
+    border-radius: 12px;
 }
+
 
 /* Apply styles to the hotel name */
 .hotel-card h3 {
@@ -128,3 +136,48 @@ button.details {
     background-color: #ffa500; /* Orange */
     color: #fff; /* White text */
 }
+
+
+.name-rate{
+    display: flex;
+    justify-content: space-between;
+    h3{
+        margin: 0px;
+    }
+}
+
+.hrating{
+    color: white;
+    background-color: #267E3E;
+    width: 30px;
+    height: 20px;
+    padding: 0px 5px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    margin-right: 2px;
+}
+
+.home-img {
+    background-image: url(coverpix.jpg); /* Replace 'coverpix.jpg' with the path to your image */
+    background-size: cover; /* Ensures the background image covers the entire element */
+    background-position: center; /* Centers the background image */
+    width: 100%; /* Adjust the width as needed */
+    height: 400px; /* Adjust the height as needed */
+    display: flex; /* Enables flexbox layout */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+  }
+  
+  .caption { 
+    position: fixed;
+    font-size: 30px; /* Adjust the font size as needed */
+    color: rgb(0, 0, 0); /* Color of the text */
+    text-align: center; /* Aligns the text to the center */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds a shadow to the text */
+    position: fixed;
+    left: 50px;
+    /* top: 200px; */
+    margin-bottom: 10px;
+  }
+  
