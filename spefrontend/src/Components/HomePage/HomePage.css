@@ -1,0 +1,130 @@
+/* Define some color variables */
+:root {
+    --primary-color: #007bff; /* Blue */
+    --secondary-color: #28a745; /* Green */
+    --accent-color: #ffc107; /* Yellow */
+    --text-color: #333; /* Dark grey */
+    --bg-color: #f8f9fa; /* Light grey background */
+}
+
+/* Apply styles to the entire page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply styles to the header */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--primary-color);
+}
+
+/* Apply styles to the hotel grid */
+.hotel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+/* Apply styles to each hotel card */
+.hotel-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff; /* White background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+/* Apply styles to the image */
+.hotel-card img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* Apply styles to the hotel name */
+.hotel-card h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+/* Apply styles to the hotel description */
+.hotel-card p {
+    color: var(--text-color);
+}
+
+/* Apply styles to the button container */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* Apply styles to the dialog */
+.dialog, .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+/* Apply styles to the buttons */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Primary button style */
+button.primary {
+    background-color: var(--primary-color);
+    color: #fff; /* White text */
+}
+
+/* Secondary button style */
+button.secondary {
+    background-color: var(--secondary-color);
+    color: #fff; /* White text */
+}
+
+/* Add hover effect to buttons */
+button:hover {
+    filter: brightness(1.1); /* Increase brightness on hover */
+}
+
+/* Close button style */
+button.close {
+    background-color: var(--accent-color);
+    color: #fff; /* White text */
+}
+
+/* Popup button container */
+.popUp-button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Custom button colors */
+button.book-now {
+    background-color: #28a745 /* Red */;
+    color: #fff; /* White text */
+}
+button.close {
+    background-color: #ff0000; /* Red */
+    color: #fff; /* White text */
+}
+button.details {
+    background-color: #ffa500; /* Orange */
+    color: #fff; /* White text */
+}
