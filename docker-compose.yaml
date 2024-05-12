@@ -1,0 +1,45 @@
+version: '3'
+services:
+  mysqlcontainer:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=mydining
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - networkmysql
+  frontend:
+    build:
+      context: ./spefrontend
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    networks:
+      - networkmysql
+  backend:
+    build:
+      context: ./spebackend
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8080'
+    environment:
+      - MYSQL_HOST=mysqlcontainer
+      - MYSQL_PORT=3306
+      - MYSQL_DB_NAME=mydining
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    networks:
+      - networkmysql
+    depends_on:
+      - mysqlcontainer
+    volumes:
+    - ./spebackend/images:/images
+networks:
+  networkmysql:
+volumes:
+  mysql_data:
