@@ -1,9 +1,7 @@
 version: '3'
 services:
   mysqlcontainer:
-    build: 
-      context: .
-      dockerfile: Dockerfile
+    image: vishwatejach/mydiningdatabase:latest
     ports:
       - '3306:3306'
     environment:
@@ -19,17 +17,13 @@ services:
       timeout: 10s
       retries: 5
   frontend:
-    build:
-      context: ./spefrontend
-      dockerfile: Dockerfile
+    image: vishwatejach/mydiningfrontend:latest
     ports:
       - '3000:3000'
     networks:
       - networkmysql
   backend:
-    build:
-      context: ./spebackend
-      dockerfile: Dockerfile
+    image: vishwatejach/mydiningbackend:latest
     ports:
       - '8080:8080'
     environment:
