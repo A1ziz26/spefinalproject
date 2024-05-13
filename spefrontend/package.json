@@ -1,7 +1,7 @@
 {
   "name": "hotelbooking",
   "version": "0.1.0",
-  "homepage": "https://a1ziz26.github.io/mydining/",
+  "homepage": "https://a1ziz26.github.io/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
