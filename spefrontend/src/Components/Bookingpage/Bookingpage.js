@@ -11,11 +11,6 @@ import './Pbook.css';
 import { useLocation } from 'react-router-dom';
 function PBookNow() {
   const navigate = useNavigate();
-  useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      navigate("/");
-    }
-  }, []);
 
   const [selectedDoctor, setSelectedDoctor] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
