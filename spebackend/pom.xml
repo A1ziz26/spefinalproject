@@ -71,7 +71,7 @@
                         		<manifest>
                             			<addClasspath>true</addClasspath>
                             			<classpathPrefix>lib/</classpathPrefix>
-                            			<mainClass>org.example.Scientificcalc</mainClass>
+                            			<mainClass>org.example.spebackend</mainClass>
                         		</manifest>
                     			</archive>
                 		</configuration>
