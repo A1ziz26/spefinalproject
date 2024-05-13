@@ -71,7 +71,7 @@
                         		<manifest>
                             			<addClasspath>true</addClasspath>
                             			<classpathPrefix>lib/</classpathPrefix>
-                            			<mainClass>org.example.spebackend.SpebackendApplication</mainClass>
+                            			<mainClass>com.example.spebackend.SpebackendApplication</mainClass>
                         		</manifest>
                     			</archive>
                 		</configuration>
