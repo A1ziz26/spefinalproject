@@ -28,8 +28,7 @@ pipeline {
                 ansiblePlaybook(
                     installation: 'Ansible',
                     inventory: '/var/lib/jenkins/workspace/mydining/deploy/inventory',
-                    playbook: '/var/lib/jenkins/workspace/mydining/deploy/deploy_docker.yaml',
-                    vaultCredentialsId: 'ansible_vault'
+                    playbook: '/var/lib/jenkins/workspace/mydining/deploy/deploy_docker.yaml'
                 )
             }
         }
