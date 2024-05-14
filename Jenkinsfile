@@ -33,7 +33,13 @@ pipeline {
         }
         stage("Build and Push Docker Images"){
             steps{
-                ansiblePlaybook installation: 'Ansible', inventory: 'deploy/inventory', playbook: 'deploy/deploy_docker.yaml', vaultCredentialsId: '98c68497-7dff-4088-9be0-71eb570c18cb', vaultTmpPath: ''
+                ansiblePlaybook(
+                    installation: 'Ansible',
+                    inventory: 'deploy/inventory',
+                    playbook: 'deploy/deploy_docker.yaml',
+                    vaultCredentialsId: 'ansible_vault',
+                    vaultPath: ''
+                )
             }
         }
         stage("Run Docker Compose") {
