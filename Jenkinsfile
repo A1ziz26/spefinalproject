@@ -37,8 +37,7 @@ pipeline {
                     installation: 'Ansible',
                     inventory: 'deploy/inventory',
                     playbook: 'deploy/deploy_docker.yaml',
-                    vaultCredentialsId: 'ansible_vault',
-                    vaultPath: ''
+                    vaultCredentialsId: 'ansible_vault'
                 )
             }
         }
