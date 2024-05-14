@@ -1,0 +1,2 @@
+[local]
+vishwa ansible_connection=local
