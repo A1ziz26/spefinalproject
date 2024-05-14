@@ -23,13 +23,10 @@ pipeline {
                 }
             }
         }
-        stage("Build and Push Docker Images"){
-            steps{
-                ansiblePlaybook(
-                    installation: 'Ansible',
-                    inventory: '/var/lib/jenkins/workspace/mydining/deploy/inventory',
-                    playbook: '/var/lib/jenkins/workspace/mydining/deploy/deploy_docker.yaml'
-                )
+        stage('Build and Push Docker Image ') {
+            steps {
+                ansiblePlaybook becomeUser: null, colorized: true, disableHostKeyChecking: true, inventory: 'deploy/inventory',
+                playbook: 'deploy/docker_deploy.yaml', sudoUser: null, vaultTmpPath: ''
             }
         }
         stage("Run Docker Compose") {
