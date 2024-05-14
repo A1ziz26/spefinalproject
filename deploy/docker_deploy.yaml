@@ -8,45 +8,35 @@
 
   tasks:
     - name: Build Docker Images
-      community.docker.docker_image:
-        source: build
-        build:
-          path: ../spebackend
-        name: vishwatejach/mydiningbackend1:latest
+      docker_image:
+        path: ../spebackend
+        name: vishwatejach/mydiningbackend1
+        tag: latest
       register: backend_image
 
     - name: Build Docker Image for frontend
-      community.docker.docker_image:
-        source: build
-        build:
-          path: ../spefrontend
-        name: vishwatejach/mydiningfrontend:latest
+      docker_image:
+        path: ../spefrontend
+        name: vishwatejach/mydiningfrontend
+        tag: latest
       register: frontend_image
 
     - name: Build Docker Image for database
-      community.docker.docker_image:
-        source: build
-        build:
-          path: ../spedatabase
-        name: vishwatejach/mydiningdatabase:latest
+      docker_image:
+        path: ../spedatabase
+        name: vishwatejach/mydiningdatabase
+        tag: latest
       register: database_image
 
     - name: Push Docker Images to DockerHub
-      community.docker.docker_login:
-        username: "{{ dockerhub_username }}"
-        password: "{{ dockerhub_password }}"
+      shell: |
+        echo "{{ dockerhub_password }}" | docker login --username "{{ dockerhub_username }}" --password-stdin
 
     - name: Push Backend Image
-      community.docker.docker_push:
-        name: "{{ backend_image.name }}"
-        tag: "{{ backend_image.tag }}"
+      shell: docker push vishwatejach/mydiningbackend1:latest
 
     - name: Push Frontend Image
-      community.docker.docker_push:
-        name: "{{ frontend_image.name }}"
-        tag: "{{ frontend_image.tag }}"
+      shell: docker push vishwatejach/mydiningfrontend:latest
 
     - name: Push Database Image
-      community.docker.docker_push:
-        name: "{{ database_image.name }}"
-        tag: "{{ database_image.tag }}"
+      shell: docker push vishwatejach/mydiningdatabase:latest
