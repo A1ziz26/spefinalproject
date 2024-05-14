@@ -9,6 +9,7 @@
   tasks:
     - name: Build Docker Images
       docker_image:
+        source: build
         path: ../spebackend
         name: vishwatejach/mydiningbackend1
         tag: latest
@@ -16,6 +17,7 @@
 
     - name: Build Docker Image for frontend
       docker_image:
+        source: build
         path: ../spefrontend
         name: vishwatejach/mydiningfrontend
         tag: latest
@@ -23,6 +25,7 @@
 
     - name: Build Docker Image for database
       docker_image:
+        source: build
         path: ../spedatabase
         name: vishwatejach/mydiningdatabase
         tag: latest
