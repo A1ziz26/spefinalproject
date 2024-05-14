@@ -35,8 +35,8 @@ pipeline {
             steps{
                 ansiblePlaybook(
                     installation: 'Ansible',
-                    inventory: 'deploy/inventory',
-                    playbook: 'deploy/deploy_docker.yaml',
+                    inventory: '/var/lib/jenkins/workspace/mydining/deploy/inventory',
+                    playbook: '/var/lib/jenkins/workspace/mydining/deploy/deploy_docker.yaml',
                     vaultCredentialsId: 'ansible_vault'
                 )
             }
