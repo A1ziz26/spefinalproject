@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: no
   vars:
-    dockerhub_username: your_username
+    dockerhub_username: vishwatejach
     dockerhub_password: !vault |
               $ANSIBLE_VAULT;1.1;AES256
               36303363316462303064386131376637343766383730653833653830656538633033303662323465
