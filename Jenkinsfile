@@ -31,28 +31,9 @@ pipeline {
                 }
             }
         }
-        stage('Build Docker Images') {
-            steps {
-                script {
-                    dir('spebackend') {
-                        dockerImage1 = docker.build registry1
-                    }
-                    dir('spefrontend') {
-                        dockerImage2 = docker.build registry2 
-                    }
-                    dockerImage3 = docker.build registry3 
-                }
-            }
-        }
-        stage("Push to DockerHub"){
+        stage("Build and Push Docker Images"){
             steps{
-                script{
-                    docker.withRegistry('','dockerhub-pwd'){
-                    dockerImage1.push()
-                    dockerImage2.push()
-                    dockerImage3.push()
-                    }
-                }
+                ansiblePlaybook installation: 'Ansible', inventory: 'deploy/inventory', playbook: 'deploy/deploy_docker.yaml', vaultCredentialsId: '98c68497-7dff-4088-9be0-71eb570c18cb', vaultTmpPath: ''
             }
         }
         stage("Run Docker Compose") {
