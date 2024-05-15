@@ -40,7 +40,9 @@ pipeline {
                     dir('spefrontend') {
                         dockerImage2 = docker.build registry2 
                     }
-                    dockerImage3 = docker.build registry3 
+                    dir('spedatabase') {
+                        dockerImage3 = docker.build registry3
+                    }
                 }
             }
         }
