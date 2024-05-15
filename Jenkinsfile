@@ -1,5 +1,13 @@
 pipeline {
     agent any
+    environment{
+        registry1='vishwatejach/mydiningbackend1'
+        registry2='vishwatejach/mydiningfrontend'
+        registry3='vishwatejach/mydiningdatabase'
+        dockerImage1=''
+        dockerImage2=''
+        dockerImage3=''
+    }
     tools {
         maven 'maven' 
     }
