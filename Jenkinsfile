@@ -23,10 +23,28 @@ pipeline {
                 }
             }
         }
-        stage('Build and Push Docker Image ') {
+        stage('Build Docker Images') {
             steps {
-                ansiblePlaybook becomeUser: null, colorized: true, disableHostKeyChecking: true, inventory: 'deploy/inventory',
-                playbook: 'deploy/docker_deploy.yaml', sudoUser: null, vaultTmpPath: ''
+                script {
+                    dir('spebackend') {
+                        dockerImage1 = docker.build registry1
+                    }
+                    dir('spefrontend') {
+                        dockerImage2 = docker.build registry2 
+                    }
+                    dockerImage3 = docker.build registry3 
+                }
+            }
+        }
+        stage("Push to DockerHub"){
+            steps{
+                script{
+                    docker.withRegistry('','dockerhub-pwd'){
+                    dockerImage1.push()
+                    dockerImage2.push()
+                    dockerImage3.push()
+                    }
+                }
             }
         }
         stage("Run Docker Compose") {
