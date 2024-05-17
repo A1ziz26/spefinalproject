@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: mydining-backend
-        image: vishwatejach/spebackend:v2
+        image: vishwatejach/spebackend1:v3
         ports:
         - containerPort: 8080
         env:
