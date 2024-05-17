@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: vishwatejach/spedatabase:v1
+        image: vishwatejach/mydiningdatabase:v3
         ports:
         - containerPort: 3306
         env:
