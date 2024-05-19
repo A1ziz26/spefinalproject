@@ -10,19 +10,6 @@
       - name: vishwatejach/mydiningdatabase
         path: ../spedatabase
   tasks:
-    - name: Ensure Docker is installed
-      apt:
-        name: docker.io
-        state: present
-      become: yes
-
-    - name: Ensure Docker service is running
-      service:
-        name: docker
-        state: started
-        enabled: yes
-      become: yes
-
     - name: Build Docker images
       community.docker.docker_image:
         with_items: "{{ docker_images }}"
