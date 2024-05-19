@@ -1,13 +1,13 @@
 pipeline {
     agent any
-    environment{
-        registry1='vishwatejach/mydiningbackend1'
-        registry2='vishwatejach/mydiningfrontend'
-        registry3='vishwatejach/mydiningdatabase'
-        dockerImage1=''
-        dockerImage2=''
-        dockerImage3=''
-    }
+    // environment{
+    //     registry1='vishwatejach/mydiningbackend1'
+    //     registry2='vishwatejach/mydiningfrontend'
+    //     registry3='vishwatejach/mydiningdatabase'
+    //     dockerImage1=''
+    //     dockerImage2=''
+    //     dockerImage3=''
+    // }
     tools {
         maven 'maven' 
     }
@@ -34,15 +34,16 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 script {
-                    dir('spebackend') {
-                        dockerImage1 = docker.build registry1
-                    }
-                    dir('spefrontend') {
-                        dockerImage2 = docker.build registry2 
-                    }
-                    dir('spedatabase') {
-                        dockerImage3 = docker.build registry3
-                    }
+                    // dir('spebackend') {
+                    //     dockerImage1 = docker.build registry1
+                    // }
+                    // dir('spefrontend') {
+                    //     dockerImage2 = docker.build registry2 
+                    // }
+                    // dir('spedatabase') {
+                    //     dockerImage3 = docker.build registry3
+                    // }
+                    ansiblePlaybook installation: 'Ansible', inventory: 'deploy/inventory', playbook: 'deploy/docker_deploy.yam;', vaultTmpPath: ''
                 }
             }
         }
