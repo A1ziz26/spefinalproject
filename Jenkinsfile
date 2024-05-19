@@ -43,7 +43,7 @@ pipeline {
                     // dir('spedatabase') {
                     //     dockerImage3 = docker.build registry3
                     // }
-                    ansiblePlaybook installation: 'Ansible', inventory: 'deploy/inventory', playbook: 'deploy/docker_deploy.yam;', vaultTmpPath: ''
+                    ansiblePlaybook installation: 'Ansible', inventory: 'deploy/inventory', playbook: 'deploy/docker_deploy.yaml', vaultTmpPath: ''
                 }
             }
         }
