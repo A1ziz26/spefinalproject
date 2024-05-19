@@ -4,15 +4,18 @@
   vars:
     docker_images:
       - name: vishwatejach/mydiningbackend1
-        build: ../spebackend
+        build:
+          path: ../spebackend
       - name: vishwatejach/mydiningfrontend
-        build: ../spefrontend
+        build:
+          path: ../spefrontend
       - name: vishwatejach/mydiningdatabase
-        build: ../spedatabase
+        build:
+          path: ../spedatabase
   tasks:
     - name: Build Docker images
       community.docker.docker_image:
-        path: "{{ item.path }}"
+        path: "{{ item.build.path }}"
         name: "{{ item.name }}"
         state: present
       loop: "{{ docker_images }}"
