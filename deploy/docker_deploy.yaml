@@ -4,11 +4,11 @@
   vars:
     docker_images:
       - name: vishwatejach/mydiningbackend1
-        path: ../spebackend
+        build: ../spebackend
       - name: vishwatejach/mydiningfrontend
-        path: ../spefrontend
+        build: ../spefrontend
       - name: vishwatejach/mydiningdatabase
-        path: ../spedatabase
+        build: ../spedatabase
   tasks:
     - name: Build Docker images
       community.docker.docker_image:
