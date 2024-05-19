@@ -6,12 +6,15 @@
       - name: vishwatejach/mydiningbackend1
         build:
           path: ../spebackend
+          source: build
       - name: vishwatejach/mydiningfrontend
         build:
           path: ../spefrontend
+          source: build
       - name: vishwatejach/mydiningdatabase
         build:
           path: ../spedatabase
+          source: build
   tasks:
     - name: Build Docker images
       community.docker.docker_image:
