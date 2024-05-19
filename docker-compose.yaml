@@ -4,10 +4,6 @@ services:
     image: vishwatejach/mydiningdatabase:latest
     ports:
       - '3306:3306'
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://logstash-host:12201"
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=mydining
@@ -24,20 +20,12 @@ services:
     image: vishwatejach/mydiningfrontend:latest
     ports:
       - '3000:3000'
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://logstash-host:12201"
     networks:
       - networkmysql
   backend:
     image: vishwatejach/mydiningbackend1:latest
     ports:
       - '8080:8080'
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://logstash-host:12201"
     environment:
       - MYSQL_HOST=mysqlcontainer
       - MYSQL_PORT=3306
