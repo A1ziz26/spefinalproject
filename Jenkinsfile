@@ -23,7 +23,7 @@ pipeline {
                 }
             }
         }
-        stage('Build Docker Images') {
+        stage('Build & Push Docker Images to DockerHub') {
             steps {
                 script {
                     ansiblePlaybook installation: 'Ansible', inventory: 'deploy/inventory', playbook: 'deploy/docker_deploy.yaml', vaultTmpPath: ''
