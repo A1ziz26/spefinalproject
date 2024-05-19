@@ -46,26 +46,26 @@ pipeline {
                 }
             }
         }
-        stage("Push to DockerHub"){
-            steps{
-                script{
-                    docker.withRegistry('','dockerhub-pwd'){
-                    dockerImage1.push()
-                    dockerImage2.push()
-                    dockerImage3.push()
-                    }
-                }
-            }
-        }
-        stage("Deploy ELK Stack") {
-            steps {
-                script {
-                    dir('ELK') {
-                        sh 'docker-compose up -d'
-                    }
-                }
-            }
-        }
+        // stage("Push to DockerHub"){
+        //     steps{
+        //         script{
+        //             docker.withRegistry('','dockerhub-pwd'){
+        //             dockerImage1.push()
+        //             dockerImage2.push()
+        //             dockerImage3.push()
+        //             }
+        //         }
+        //     }
+        // }
+        // stage("Deploy ELK Stack") {
+        //     steps {
+        //         script {
+        //             dir('ELK') {
+        //                 sh 'docker-compose up -d'
+        //             }
+        //         }
+        //     }
+        // }
         stage("Run Docker Compose") {
             steps {
                 script {
