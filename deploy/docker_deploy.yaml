@@ -1,25 +1,21 @@
 ---
-- name: Build and Push Docker Images
-  hosts: all
-  vars:
-    docker_images:
-      - name: vishwatejach/mydiningbackend1
-        build:
-          path: ../spebackend
-          source: build
-      - name: vishwatejach/mydiningfrontend
-        build:
-          path: ../spefrontend
-          source: build
-      - name: vishwatejach/mydiningdatabase
-        build:
-          path: ../spedatabase
-          source: build
+- name: Build Docker Images
+  hosts: localhost
   tasks:
-    - name: Build Docker images
-      community.docker.docker_image:
-        path: "{{ item.build.path }}"
-        name: "{{ item.name }}"
-        state: present
-      loop: "{{ docker_images }}"
-      become: yes
+    - name: Build Backend Image
+      community.docker.docker_image_build:
+        path: ../spebackend
+        name: vishwatejach/mydiningbackend1
+        tag: latest
+
+    - name: Build Frontend Image
+      community.docker.docker_image_build:
+        path: ../spefrontend
+        name: vishwatejach/mydiningfrontend
+        tag: latest
+
+    - name: Build Database Image
+      community.docker.docker_image_build:
+        path: ../spedatabase
+        name: vishwatejach/mydiningdatabase
+        tag: latest
