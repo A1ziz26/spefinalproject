@@ -57,15 +57,15 @@ pipeline {
         //         }
         //     }
         // }
-        // stage("Deploy ELK Stack") {
-        //     steps {
-        //         script {
-        //             dir('ELK') {
-        //                 sh 'docker-compose up -d'
-        //             }
-        //         }
-        //     }
-        // }
+        stage("Deploy ELK Stack") {
+            steps {
+                script {
+                    dir('ELK') {
+                        sh 'docker-compose up -d'
+                    }
+                }
+            }
+        }
         stage("Run Docker Compose") {
             steps {
                 script {
