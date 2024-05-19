@@ -8,11 +8,11 @@ services:
       - "9200:9200"
 
   logstash:
-    image: docker.elastic.co/logstash/logstash:7.13.3
+    image: docker.elastic.co/logstash/logstash:7.13.2
+    ports:
+      - "12201:12201/udp"
     volumes:
       - ./logstash.conf:/usr/share/logstash/pipeline/logstash.conf
-    ports:
-      - "5044:5044"
 
   kibana:
     image: docker.elastic.co/kibana/kibana:7.13.3
