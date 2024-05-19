@@ -12,7 +12,6 @@
   tasks:
     - name: Build Docker images
       community.docker.docker_image:
-        with_items: "{{ docker_images }}"
         loop: "{{ docker_images }}"
         path: "{{ item.path }}"
         name: "{{ item.name }}"
