@@ -20,16 +20,16 @@
         name: vishwatejach/mydiningdatabase
         tag: latest
 
-    - name: Log in to Docker Hub
-      community.docker.docker_login:
-        username: vishwatejach
-        password: Vinnusri@0102
+    # - name: Log in to Docker Hub
+    #   community.docker.docker_login:
+    #     username: vishwatejach
+    #     password: Vinnusri@0102
         
-    - name: Push Images to Docker Hub
-      community.docker.docker_image_push:
-        name: "{{ item.name }}"
-        tag: latest
-      loop:
-        - { name: vishwatejach/mydiningbackend1 }
-        - { name: vishwatejach/mydiningfrontend }
-        - { name: vishwatejach/mydiningdatabase }
+    # - name: Push Images to Docker Hub
+    #   community.docker.docker_image_push:
+    #     name: "{{ item.name }}"
+    #     tag: latest
+    #   loop:
+    #     - { name: vishwatejach/mydiningbackend1 }
+    #     - { name: vishwatejach/mydiningfrontend }
+    #     - { name: vishwatejach/mydiningdatabase }
