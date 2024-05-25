@@ -74,7 +74,7 @@ let timeselected;
       console.log(selectedDate);
       const hotelid = parseInt(selectedRestaurantId);
       const response = await axios.get(
-        `backendUrl/restaurants/getavailabletables`,
+        `${backendUrl}/restaurants/getavailabletables`,
         {
         //   headers: {
         //     Authorization: `Bearer ${token}`,
@@ -118,7 +118,7 @@ let timeselected;
 //     try {
 //       const token = localStorage.getItem("token");
 //       const response = await axios.get(
-//         `backendUrl/hotel/time-slots`,
+//         `${backendUrl}/hotel/time-slots`,
 //         {
 //           params: {
 //             resId: selectedRestaurantId,
@@ -226,7 +226,7 @@ useEffect(()=> {
     console.log(time);
     try {
       await axios.post(
-        "backendUrl/restaurants/book-apt",
+        `${backendUrl}/restaurants/book-apt`,
         {
           customer: { id: patientId },
           restaurant: { id: parseInt(selectedRestaurantId) },
