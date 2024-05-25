@@ -9,31 +9,38 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/A1ziz26/spefinalproject']])
             }
         }
-        stage('Build Maven') {
+        stage('Build') {
             steps {
                 dir('spebackend') {
                     sh 'mvn clean install'
                 }
             }
         }
-        stage('Maven Test') {
+        stage('Test') {
             steps {
                 dir('spebackend') {
                     sh 'mvn test'
                 }
             }
         }
-        stage('Build & Push Docker Images to DockerHub') {
+        stage('Contanerization') {
+            steps {
+                script {
+                    ansiblePlaybook installation: 'Ansible', inventory: 'deploy/inventory', playbook: 'deploy/docker_build.yaml', vaultTmpPath: ''
+                }
+            }
+        }
+        stage('Deploy') {
             steps {
                 script {
                     ansiblePlaybook installation: 'Ansible', inventory: 'deploy/inventory', playbook: 'deploy/docker_deploy.yaml', vaultTmpPath: ''
                 }
             }
         }
-        stage("Run Docker Compose") {
+        stage("Start Services") {
             steps {
                 script {
-                    sh 'docker compose up -d'
+                    sh 'docker-compose up --scale webapp=5 --detach'
                 }
             }
         }
