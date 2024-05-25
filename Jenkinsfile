@@ -40,7 +40,7 @@ pipeline {
         stage("Start Services") {
             steps {
                 script {
-                    sh 'docker-compose up --scale webapp=5 --detach'
+                    sh 'docker-compose up --scale backend=3 --detach'
                 }
             }
         }
