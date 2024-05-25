@@ -12,14 +12,14 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchhotels = async () => {
-      const response = await axios.get(`http://localhost:8080/restaurants/tablecountgtzero`);
+      const response = await axios.get(`backendUrl/restaurants/tablecountgtzero`);
       const hotels = response.data;
-  
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
       // Fetch images for each hotel
       const hotelsWithImages = await Promise.all(hotels.map(async (hotel) => {
         try {
           // Replace 'image.jpg' with the actual filename of the hotel's image
-          const imageResponse = await axios.get(`http://localhost:8080/restaurants/download/${hotel.restImage}`, { responseType: 'arraybuffer' });
+          const imageResponse = await axios.get(`backendUrl/restaurants/download/${hotel.restImage}`, { responseType: 'arraybuffer' });
           let image = btoa(
             new Uint8Array(imageResponse.data)
               .reduce((data, byte) => data + String.fromCharCode(byte), '')
