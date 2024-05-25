@@ -11,7 +11,7 @@ import './Pbook.css';
 import { useLocation } from 'react-router-dom';
 function PBookNow() {
   const navigate = useNavigate();
-
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const [selectedDoctor, setSelectedDoctor] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [timeSlots, setTimeSlots] = useState([]);
@@ -74,7 +74,7 @@ let timeselected;
       console.log(selectedDate);
       const hotelid = parseInt(selectedRestaurantId);
       const response = await axios.get(
-        `http://localhost:8080/restaurants/getavailabletables`,
+        `backendUrl/restaurants/getavailabletables`,
         {
         //   headers: {
         //     Authorization: `Bearer ${token}`,
@@ -118,7 +118,7 @@ let timeselected;
 //     try {
 //       const token = localStorage.getItem("token");
 //       const response = await axios.get(
-//         `http://localhost:8080/hotel/time-slots`,
+//         `backendUrl/hotel/time-slots`,
 //         {
 //           params: {
 //             resId: selectedRestaurantId,
@@ -226,7 +226,7 @@ useEffect(()=> {
     console.log(time);
     try {
       await axios.post(
-        "http://localhost:8080/restaurants/book-apt",
+        "backendUrl/restaurants/book-apt",
         {
           customer: { id: patientId },
           restaurant: { id: parseInt(selectedRestaurantId) },
