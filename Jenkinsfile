@@ -40,7 +40,7 @@ pipeline {
         stage("Start Services") {
             steps {
                 script {
-                    sh 'docker-compose up -d --scale backend=2'
+                    sh 'docker-compose up -d'
                 }
             }
         }
