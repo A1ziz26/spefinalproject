@@ -11,7 +11,7 @@ const LoginPage = ({ handleLogin }) => {
   const [error, setError] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
   const navigate = useNavigate();
-
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const handleFormSubmit = async(e) => {
     e.preventDefault();
 
@@ -22,7 +22,7 @@ const LoginPage = ({ handleLogin }) => {
     }
     e.preventDefault();
     console.log(email);
-    const response = await axios.post('http://localhost:8080/auth/login', {
+    const response = await axios.post(`${backendUrl}/auth/login`, {
       email: email,
       password: password,
     });        
@@ -32,7 +32,7 @@ const LoginPage = ({ handleLogin }) => {
     // Call handleLogin if fields are not empty
     if(response.data === "Login Successfull!")
       {
-        const response = await axios.get(`http://localhost:8080/customer/getid?cemail=${email}`);
+        const response = await axios.get(`${backendUrl}/customer/getid?cemail=${email}`);
         console.log(response.data);
         localStorage.setItem('customerId', response.data);
         handleLogin(email, password);
@@ -60,7 +60,7 @@ const LoginPage = ({ handleLogin }) => {
   const handleRegisterSubmit = async(e) => {
     // Handle registration logic here
     e.preventDefault();
-    const response = await fetch('http://localhost:8080/auth/register', {
+    const response = await fetch(`${backendUrl}/auth/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
