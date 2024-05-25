@@ -14,10 +14,11 @@ const Patientscreen = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const patientId = localStorage.getItem('customerId');
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
     useEffect(() => {
         const fetchApts = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/customer/getbookings?cid=${patientId}`);
+                const response = await axios.get(`${backendUrl}/customer/getbookings?cid=${patientId}`);
                 setApts(response.data);
             } catch (error) {
                 setError(error.message);
@@ -29,7 +30,7 @@ const Patientscreen = () => {
     const handleDeleteApt = async (cid) => {
         try {
           const response = await axios.put(
-            `http://localhost:8080/customer/del-apt?id=${cid}`,
+            `${backendUrl}/customer/del-apt?id=${cid}`,
             
           );
           console.log(response);
