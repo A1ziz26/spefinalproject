@@ -38,8 +38,9 @@ pipeline {
                 script {
                     dir('deploy'){
                         sh '''
-                            ansible-playbook docker_deploy.yml --vault-password-file <(echo $VAULT_PASSWORD)
-                        '''
+                        #!/bin/bash
+                        ansible-playbook your_playbook.yml --vault-password-file <(echo $VAULT_PASSWORD)
+                    '''
                     }
                 }
             }
