@@ -1,0 +1,21 @@
+.today-apt{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.apts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 60%;
+    margin-bottom: 1%;
+    border: 2px solid rgb(248, 247, 247);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.cl-apt1 {
+    width: 15%;
+}
