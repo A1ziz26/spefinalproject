@@ -3,6 +3,9 @@ pipeline {
     tools {
         maven 'maven' 
     }
+    environment {
+        VAULT_PASSWORD = credentials('ansible_vault_password')
+    }
     stages {
         stage('Git Pull') {
             steps {
@@ -33,7 +36,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    ansiblePlaybook installation: 'Ansible', inventory: 'deploy/inventory', playbook: 'deploy/docker_deploy.yaml', vaultTmpPath: ''
+                    dir('deploy'){
+                        sh '''
+                            ansible-playbook docker_deploy.yml --vault-password-file <(echo $VAULT_PASSWORD)
+                        '''
+                    }
                 }
             }
         }
